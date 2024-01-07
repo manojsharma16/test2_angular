@@ -1,0 +1,101 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-ctrl">
+      <label for="name">First Name</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="enter name"
+        formControlName="name"
+      />
+      <div *ngIf="submitted && f['name'].errors">
+        <p *ngIf="f['name'].errors?.['required']">This field is required</p>
+      </div>
+    </div>
+
+    <div class="form-ctrl">
+      <label for="date">Last Name</label>
+      <input
+        type="date"
+        id="date"
+        placeholder="enter name"
+        formControlName="date"
+      />
+      <div *ngIf="submitted && f['date'].errors">
+        <p *ngIf="f['date'].errors?.['required']">This field is required</p>
+      </div>
+    </div>
+    <div class="form-ctrl">
+      <label for="date">Last Name</label>
+      <input
+        type="file"
+        placeholder="select image"
+        (change)="imageChange($event)"
+      />
+      <img *ngIf="!f['image'].errors" [src]="this.form.get('image')?.value" />
+      <div *ngIf="submitted && f['image'].errors">
+        <p *ngIf="f['image'].errors?.['required']">This field is required</p>
+      </div>
+    </div>
+
+    <div class="form-ctrl">
+      <label for="dept">Country</label>
+      <select id="dept" formControlName="dept">
+        <option value="" selected hidden>Please Choose...</option>
+        <option value="dept1">Dept1</option>
+        <option value="dept2">Dept2</option>
+        <option value="dept3">Dept3</option>
+      </select>
+      <div *ngIf="submitted && f['dept']">
+        <p *ngIf="f['dept'].errors?.['required']">This field is required</p>
+      </div>
+    </div>
+    <div class="form-ctrl">
+      <label for="subject">Mobile</label>
+      <input
+        id="number"
+        type="text"
+        placeholder="enter you number"
+        formControlName="mobile"
+        OnlyNumber="true"
+      />
+      <div *ngIf="submitted && f['mobile'].errors">
+        <p *ngIf="f['mobile'].errors?.['required']">This field is required</p>
+      </div>
+    </div>
+    <ng-container formArrayName="sibblings">
+      <ng-container *ngFor="let addressGroup of fsib; let i = index">
+        <div [formGroupName]="i">
+          form No : {{ i }}
+          <div>
+            First Name <input formControlName="firstname" />
+            <div *ngIf="submitted && fsib[i].get('firstname')?.errors">
+              <p
+                *ngIf="submitted && fsib[i].get('firstname')?.errors?.['required']"
+              >
+                This field is required
+              </p>
+            </div>
+          </div>
+
+          <div>Last Name <input formControlName="lastname" /></div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <input type="button" (click)="addSibblings()" value="Add More" />
+    <input type="submit" value="Submit" />
+  </form>
+
+  <div>
+    <input
+      type="file"
+      #fileInput
+      style="display: none"
+      (change)="onFileSelected($event)"
+    />
+    <button (click)="fileInput.click()">Select File</button>
+    <div *ngIf="selectedFile">
+      <img [src]="selectedFile" alt="Selected Image" />
+    </div>
+  </div>
+</div>
