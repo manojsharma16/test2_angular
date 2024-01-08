@@ -1,0 +1,12 @@
+input.ng-invalid.ng-touched,
+.fullname-container.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.fullname-container.ng-invalid.ng-touched {
+  padding: 23px;
+}
+.button-cont {
+  display: flex;
+  justify-content: space-between;
+}

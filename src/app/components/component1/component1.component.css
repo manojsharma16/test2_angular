@@ -1,0 +1,7 @@
+.img-cont {
+  display: flex;
+  gap: 5px;
+}
+.img-btn {
+  align-self: flex-start;
+}

@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { OnlyNumberDirective } from './directives/only-number.directive';
 import { Component1Component } from './components/component1/component1.component';
 import { Component2Component } from './components/component2/component2.component';
+import { ReactiveFormComponent } from './components/reactive-form/reactive-form.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { Component2Component } from './components/component2/component2.componen
     OnlyNumberDirective,
     Component1Component,
     Component2Component,
+    ReactiveFormComponent,
+    PaymentComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],

@@ -1,1 +1,134 @@
-<p>component2 works!</p>
+<div class="container">
+  <div class="button-cont">
+    <Button class="btn btn-success" (click)="fillValuesAll()"
+      >Fill All The Values</Button
+    >
+    <Button class="btn btn-success" (click)="fillValuesSome()"
+      >Fill Some The Values Like username and email</Button
+    >
+    <Button class="btn btn-success" (click)="reset()">Clear All Fields</Button>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm"> if not using viewchild in .ts need to pass the refrence variable below is with using viewchild-->
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <div class="form-group">
+          <label for="username">User name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            (input)="onDataInput()"
+            ngModel
+            required
+          />
+          <span
+            class="help-box"
+            *ngIf="
+              f.controls['username'] &&
+              f.controls['username'].touched &&
+              f.controls['username'].invalid
+            "
+            >This field is required</span
+          >
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            name="email"
+            ngModel
+            required
+            email
+            #email="ngModel"
+          />
+          <span class="help-box" *ngIf="email.touched && email.invalid"
+            >This field is required</span
+          >
+        </div>
+        <!-- giving a default dynamic value also i have grouped first and last name-->
+
+        <div
+          class="fullname-container"
+          ngModelGroup="fullName"
+          #fullname="ngModelGroup"
+        >
+          <span
+            style="color: red; font-weight: bold"
+            *ngIf="fullname.touched && fullname.invalid"
+            >This is not valid for first name or last name</span
+          >
+          <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstname"
+              name="firstname"
+              (input)="onDataInput()"
+              [ngModel]="firstname"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastname"
+              name="lastname"
+              (input)="onDataInput()"
+              [ngModel]="lastname"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- default value with two way data binding -->
+        <div class="form-group">
+          <label for="comment">Comment</label>
+          <textarea
+            type="text"
+            class="form-control"
+            id="comment"
+            name="comment"
+            (input)="onDataInput()"
+            [(ngModel)]="comment"
+            rows="3"
+          ></textarea>
+        </div>
+        <span>Two Way Data Biinding = {{ comment ? comment : "No Data" }}</span>
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select name="gender" ngModel>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+
+        <!-- for giving a static default value -->
+        <div class="form-group">
+          <label for="course">Course</label>
+          <select name="course" ngModel="bca">
+            <option value="" disabled selected>Select Course</option>
+            <option value="bca">BCA</option>
+            <option value="bsc">BSC</option>
+          </select>
+        </div>
+        <div class="mt-3">
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            [disabled]="f.invalid"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

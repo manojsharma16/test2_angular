@@ -12,8 +12,6 @@
         <p *ngIf="f['name'].errors?.['required']">This field is required</p>
       </div>
     </div>
-    <div><h1>main brnach</h1></div>
-    <div><h1>demo brnach</h1></div>
 
     <div class="form-ctrl">
       <label for="date">Last Name</label>
@@ -84,20 +82,35 @@
         </div>
       </ng-container>
     </ng-container>
-    <input type="button" (click)="addSibblings()" value="Add More" />
-    <input type="submit" value="Submit" />
-  </form>
-
-  <div>
     <input
+      type="button"
+      class="mt-2 btn btn-primary"
+      (click)="addSibblings()"
+      value="Add More"
+    />
+    <input type="submit" class="mt-2" value="Submit" />
+  </form>
+  <hr />
+  <div class="container" class="img-cont">
+    <input
+      class="form-control"
       type="file"
       #fileInput
       style="display: none"
       (change)="onFileSelected($event)"
     />
-    <button (click)="fileInput.click()">Select File</button>
+    <button class="img-btn btn btn-danger" (click)="fileInput.click()">
+      Select File
+    </button>
     <div *ngIf="selectedFile">
-      <img [src]="selectedFile" alt="Selected Image" />
+      <img
+        [src]="selectedFile"
+        alt="Selected Image"
+        width="100px"
+        height="100px"
+      />
     </div>
   </div>
+  <hr />
+  <!-- <app-component2></app-component2> -->
 </div>
